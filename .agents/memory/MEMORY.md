@@ -1,0 +1,1 @@
+- [Music downloader architecture](music-arch.md) — yt-dlp_linux + ffmpeg for proxy; all upstream conversion APIs dead
