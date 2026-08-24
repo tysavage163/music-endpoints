@@ -71,6 +71,7 @@ autoInstallPeers: false
 allowBuilds:
   '@swc/core': true
   esbuild: true
+  ffmpeg-static: true
   msw: true
   unrs-resolver: true
 

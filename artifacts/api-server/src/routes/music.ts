@@ -1,5 +1,6 @@
 import { Router, type IRouter, type Request, type Response } from "express";
 import axios from "axios";
+import ffmpegStatic from "ffmpeg-static";
 import ffmpeg from "fluent-ffmpeg";
 import { execFileSync, spawn } from "child_process";
 import { existsSync } from "fs";
@@ -13,12 +14,14 @@ const router: IRouter = Router();
 /* ── Tool paths ───────────────────────────────────────────── */
 
 // Locate ffmpeg binary on both Unix and Windows.
-let FFMPEG_PATH = "ffmpeg";
+let FFMPEG_PATH = ffmpegStatic || "ffmpeg";
 try {
   const finder = process.platform === "win32" ? "where.exe" : "which";
-  FFMPEG_PATH = execFileSync(finder, ["ffmpeg"], { encoding: "utf8" })
-    .split(/\r?\n/)[0]
-    .trim();
+  if (!ffmpegStatic) {
+    FFMPEG_PATH = execFileSync(finder, ["ffmpeg"], { encoding: "utf8" })
+      .split(/\r?\n/)[0]
+      .trim();
+  }
   ffmpeg.setFfmpegPath(FFMPEG_PATH);
 } catch {
   // fall back to PATH

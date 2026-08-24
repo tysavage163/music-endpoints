@@ -18,6 +18,9 @@ pnpm --dir artifacts/api-server start
 
 The API listens on Railway's injected `PORT` and binds to `0.0.0.0`. No `DATABASE_URL` is required by the current API routes.
 
+The API bundles `ffmpeg-static` for MP3 conversion and restores the Linux
+`yt-dlp` executable permission during the build.
+
 ## UI service
 
 Set this service variable before deployment:
