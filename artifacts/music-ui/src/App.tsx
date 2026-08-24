@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 
-const API = "/api";
+const apiOrigin = (import.meta.env.VITE_API_URL ?? "").replace(/\/$/, "");
+const API = apiOrigin ? `${apiOrigin}/api` : "/api";
 
 type Track = {
   id: string;
